@@ -53,6 +53,9 @@ const players = [
     },
 ]
 
+async function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 async function randomplayer() {
 
@@ -65,11 +68,11 @@ async function randomplayer() {
 };
 async function rounds() {
     for(let round = 1; round <= 5; round++) {
+        await wait(3000);
         console.log(`\n 🏁 Rodada ${round} 🏁 \n`);
         await rollDice();
         
     }
-
 };
 
 
@@ -85,6 +88,7 @@ async function rollDice() {
     //! await roda o primeira função e quando ela terminar, ele continua a execução do código com a funcão principal.
     const {player1, player2} = await randomplayer();
     console.log(`🏁 Corrida de Kart entre ${player1.name} e ${player2.name} Esta começando!... \n`);
-    await rounds(); 
+    await rounds();
+    
 
 })()
