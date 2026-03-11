@@ -72,7 +72,7 @@ async function rounds() {
 
 };
 
-    
+
 async function rollDice() {
     return { 
         value: Math.floor(Math.random() * 6) + 1,
@@ -85,6 +85,6 @@ async function rollDice() {
     //! await roda o primeira função e quando ela terminar, ele continua a execução do código com a funcão principal.
     const {player1, player2} = await randomplayer();
     console.log(`🏁 Corrida de Kart entre ${player1.name} e ${player2.name} Esta começando!... \n`);
-    await rounds();
+    await rounds(); 
 
 })()
