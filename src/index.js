@@ -70,33 +70,52 @@ async function randomplayer() {
     
 }
 
-async function rounds() {
+async function rounds(character1,character2) {
     const {player1, player2} = await randomplayer();
+    console.log(`🏁 Corrida de Kart entre ${player1.name} e ${player2.name} Esta começando!... \n`)
     
-    for(let round = 1; round <= 5; round++) {
-        let block = await getRandomBlock();
-        await randomplayer();
-        await wait(5000);
-        console.log(`🏁 Corrida de Kart entre ${player1.name} e ${player2.name} Esta começando!... \n`)
+    const {value} = await rollDice();
+    
+    for(let round = 1; round <= 5; round++) {   
+        const {value: dicep1} = await rollDice();
+        const {value: dicep2} = await rollDice();
         console.log(`\n 🏁 Rodada ${round} 🏁 \n`);
-        await wait(5000);
-        console.log(`\n Bloco: ${block}  \n`)
-        await wait(4000);
-        console.log(`\n Jogador ${player1.name} lançando o dado... \n`);
-        let diceResult1 = await rollDice();
+        await wait(3000);
+        let result = await getRandomBlock();
+        await wait(2000);
+        if (result === "Reta") {
+            console.log("🚀 Reta! A velocidade é o fator mais importante! 🚀");
+            await wait(2000);
+            console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
+            await wait(2000);
+            console.log(`🎲 ${player2.name} rolou um ${dicep2} 🎲`);
+        }
+        if(result === "Curva") {
+            await wait(2000);
+            console.log("🔄 Curva! A manobrabilidade é o fator mais importante! 🔄");
+            await(2000);
+            console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
+            await wait(2000);
+            console.log(`🎲 ${player2.name} rolou um ${dicep2} 🎲`);
+        }
+        else if(result === "confronto") {
+            await wait(2000);
+            console.log("⚔️ Confronto! O poder é o fator mais importante! ⚔️");
+            await wait(2000);
+            console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
+            await wait(2000);
+            console.log(`🎲 ${player2.name} rolou um ${dicep2} 🎲`); 
 
-        await wait(5000);
-        console.log(`\n Jogador ${player2.name} lançando o dado... \n`);
-        let diceResult2 = await rollDice();
+        }
         
     }
-};
+}
 
 async function rollDice() {
     const value = Math.floor(Math.random() * 6) + 1;
-    console.log(`🎲 O dado foi lançado e o valor é: ${value} 🎲`);
     return { value };
 }
+
 
 async function getRandomBlock() {
     let random = Math.random();
@@ -112,7 +131,6 @@ async function getRandomBlock() {
         default:
             result = "confronto"
         
-
     }
     return result;
 }
@@ -122,6 +140,7 @@ async function getRandomBlock() {
     console.log("🚀 Bem-vindo ao Mario Kart! 🚀");
    
     await rounds();
+    
       
 
 })()
