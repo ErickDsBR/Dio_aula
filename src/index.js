@@ -70,44 +70,53 @@ async function randomplayer() {
     
 }
 
-async function rounds(character1,character2) {
+async function rounds() {
     const {player1, player2} = await randomplayer();
     console.log(`🏁 Corrida de Kart entre ${player1.name} e ${player2.name} Esta começando!... \n`)
-    
-    const {value} = await rollDice();
-    
-    for(let round = 1; round <= 5; round++) {   
+
+    for(let round = 1; round <= 5; round++) { 
+        await wait(2000);  
+        console.log(`\n 🏁 Rodada ${round} 🏁 \n`);
         const {value: dicep1} = await rollDice();
         const {value: dicep2} = await rollDice();
-        console.log(`\n 🏁 Rodada ${round} 🏁 \n`);
-        await wait(3000);
-        let result = await getRandomBlock();
         await wait(2000);
+
+
+        let result = await getRandomBlock();
+        await wait(2500);
         if (result === "Reta") {
+            await wait(2000);
             console.log("🚀 Reta! A velocidade é o fator mais importante! 🚀");
-            await wait(2000);
+            await wait(3000);
             console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
-            await wait(2000);
+            console.log(`Soma: ${player1.velocidade + dicep1} `);
+            await wait(3500);
             console.log(`🎲 ${player2.name} rolou um ${dicep2} 🎲`);
+            console.log(`Soma: ${player2.velocidade + dicep2} `);
+            
         }
         if(result === "Curva") {
             await wait(2000);
             console.log("🔄 Curva! A manobrabilidade é o fator mais importante! 🔄");
-            await(2000);
+            await(3000);
             console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
-            await wait(2000);
+            console.log(`Soma: ${player1.manobrabilidade + dicep1} `);
+            await wait(3500);
             console.log(`🎲 ${player2.name} rolou um ${dicep2} 🎲`);
+            console.log(`Soma: ${player2.manobrabilidade + dicep2} `);
         }
         else if(result === "confronto") {
             await wait(2000);
             console.log("⚔️ Confronto! O poder é o fator mais importante! ⚔️");
-            await wait(2000);
+            await wait(3000);
             console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
-            await wait(2000);
+            console.log(`Soma: ${player1.poder + dicep1} `);
+            await wait(3500);
             console.log(`🎲 ${player2.name} rolou um ${dicep2} 🎲`); 
+            console.log(`Soma: ${player2.poder + dicep2} `);
 
         }
-        
+
     }
 }
 
