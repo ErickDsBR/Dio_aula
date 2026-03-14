@@ -72,6 +72,9 @@ async function rounds() {
     const {player1, player2} = await randomplayer();
     console.log(`🏁 Corrida de Kart entre ${player1.name} e ${player2.name} Esta começando!... \n`)
 
+    let score1 = 0;
+    let score2 = 0;
+
     for(let round = 1; round <= 5; round++) { 
         await wait(2000);  
         console.log(`\n 🏁 Rodada ${round} 🏁 \n`);
@@ -81,6 +84,7 @@ async function rounds() {
 
 
         let result = await getRandomBlock();
+
         await wait(2500);
         if (result === "Reta") {
             await wait(2000);
@@ -96,12 +100,14 @@ async function rounds() {
             
             if(soma1 > soma2) {
                 console.log(`🏆 ${player1.name} venceu a rodada! 🏆`);
-                
-                if(soma1 < soma2) {
-                    console.log(`🏆 ${player2.name} venceu a rodada! 🏆`);
-                }
+                score1++;
+
             }
-            else {
+            if(soma1 < soma2) {
+                console.log(`🏆 ${player2.name} venceu a rodada! 🏆`);
+                score2++;
+            }
+            else if (soma1 === soma2) {
                 console.log(`🤝 Empate! 🤝`);
             }
 
@@ -120,12 +126,15 @@ async function rounds() {
 
             if(soma1 > soma2) {
                 console.log(`🏆 ${player1.name} venceu a rodada! 🏆`);
+                score1++;
 
-                if(soma1 < soma2) {
-                    console.log(`🏆 ${player2.name} venceu a rodada! 🏆`);
-                }
             }
-            else {
+            if(soma1 < soma2) {
+                console.log(`🏆 ${player2.name} venceu a rodada! 🏆`);
+
+                score2++;
+            }
+            else if (soma1 === soma2) {
                 console.log(`🤝 Empate! 🤝`);
             }
         }
@@ -143,12 +152,14 @@ async function rounds() {
 
             if(soma1 > soma2) {
                 console.log(`🏆 ${player1.name} venceu a rodada! 🏆`);
+                score1++;
 
-                if(soma1 < soma2) {
-                    console.log(`🏆 ${player2.name} venceu a rodada! 🏆`);
-                }
             }
-            else {
+            if(soma1 < soma2) {
+                console.log(`🏆 ${player2.name} venceu a rodada! 🏆`);
+                score2++;
+            }
+            else if (soma1 === soma2) {
                 console.log(`🤝 Empate! 🤝`);
             }
 
@@ -156,7 +167,17 @@ async function rounds() {
         
 
     }
+    if(score1 > score2) {
+        console.log(`\n 🏆 ${player1.name} é o grande vencedor da corrida com ${score1} pontos! 🏆`);
+        if(score1 < score2) {
+            console.log(`\n 🏆 ${player2.name} é o grande vencedor da corrida com ${score2} pontos! 🏆`);
+        }
+    }
+    else {
+        console.log(`\n 🤝 A corrida terminou empatada com ${score1} pontos para ${player1.name} e ${score2} pontos para ${player2.name}! 🤝`);
+    }
 }
+
 
 async function rollDice() {
     const value = Math.floor(Math.random() * 6) + 1;
