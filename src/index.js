@@ -112,10 +112,10 @@ async function rounds() {
             }
 
         }
-        if(result === "Curva") {
+        if(result === "Curva") {    
             await wait(2000);
             console.log("🔄 Curva! A manobrabilidade é o fator mais importante! 🔄");
-            await(3000);
+            await wait(3000);
             console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
             const soma1 = player1.manobrabilidade + dicep1;
             console.log(`Soma: ${soma1} `);
@@ -169,11 +169,11 @@ async function rounds() {
     }
     if(score1 > score2) {
         console.log(`\n 🏆 ${player1.name} é o grande vencedor da corrida com ${score1} pontos! 🏆`);
-        if(score1 < score2) {
-            console.log(`\n 🏆 ${player2.name} é o grande vencedor da corrida com ${score2} pontos! 🏆`);
-        }
     }
-    else {
+    if(score1 < score2) {
+        console.log(`\n 🏆 ${player2.name} é o grande vencedor da corrida com ${score2} pontos! 🏆`);
+    }
+    else if(score1 === score2) {
         console.log(`\n 🤝 A corrida terminou empatada com ${score1} pontos para ${player1.name} e ${score2} pontos para ${player2.name}! 🤝`);
     }
 }
