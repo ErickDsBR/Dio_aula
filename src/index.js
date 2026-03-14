@@ -1,5 +1,3 @@
-const maps = []
-
 const players = [
     {
         name: 'Mario',
