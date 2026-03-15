@@ -93,7 +93,7 @@ async function rounds() {
             console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
             const soma1 = player1.velocidade + dicep1;
             console.log(`Soma: ${soma1} `);
-            await wait(3500);
+            await wait(3500);   
             console.log(`🎲 ${player2.name} rolou um ${dicep2} 🎲`);
             const soma2 = player2.velocidade + dicep2;
             console.log(`Soma: ${soma2} `);
@@ -143,7 +143,7 @@ async function rounds() {
             console.log("⚔️ Confronto! O poder é o fator mais importante! ⚔️");
             await wait(3000);
             console.log(`🎲 ${player1.name} rolou um ${dicep1} 🎲`);
-            const soma1 = player1.poder + dicep1;
+            const soma1 = player1.poder + dicep1;   
             console.log(`Soma: ${soma1} `);
             await wait(3500);
             console.log(`🎲 ${player2.name} rolou um ${dicep2} 🎲`); 
